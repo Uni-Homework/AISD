@@ -4,27 +4,31 @@ namespace assignment_2
 {
     internal class Program
     {
+        public static void printArr(int[] v)
+        {
+            foreach (int i in v) Console.Write("" + i + " ");
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
             int[] arr = new int[n];
 
-            for(int i=0; i<n; i++) arr[i] = Convert.ToInt32(Console.ReadLine());   
+            for(int i=0; i<n; i++) arr[i] = Convert.ToInt32(Console.ReadLine());
 
             arr = OddEvenSort(arr);
-            foreach (int i in arr)
-            {
-                Console.Write("" + i + " ");
-            }
-            Console.WriteLine();
+
+            printArr(arr);
         }
-        
+
         static int[] OddEvenSort(int[] nums)
         {
             bool isSorted = false;
-            while(!isSorted){
+            while (!isSorted)
+            {
                 isSorted = true;
-                for (int i=0; i<nums.Length-1; i += 2)
+                for (int i = 0; i < nums.Length - 1; i += 2)
                 {
                     if (nums[i] > nums[i + 1])
                     {
