@@ -1,4 +1,5 @@
-﻿using assignment_2;
+﻿using System.Diagnostics;
+using assignment_2;
 
 class Program
 {
@@ -6,6 +7,7 @@ class Program
     {
         int[] arr = new int[0];
         int[] sorted = new int[0];
+        Stopwatch sw = new Stopwatch();
 
         // создать объект пользовательского класса
         ConsoleKeyInfo K;
@@ -57,10 +59,15 @@ class Program
                         Console.WriteLine("\nСортировка чёт-нечёт.\nИсходный массив: ");
                         printArr(arr);
 
+                        sw.Restart();
                         sorted = OddEvenSort(arr);
+                        sw.Stop();
+
+                        TimeSpan timeSpan = sw.Elapsed;
 
                         Console.WriteLine("Отсортированный массив: ");
                         printArr(sorted);
+                        Console.WriteLine($"Время на сортировку: {timeSpan.ToString()}");
 
                         // действие
                         break;
@@ -73,10 +80,15 @@ class Program
                         Console.WriteLine("\nСортировка TimSort.\nИсходный массив: ");
                         printArr(arr);
 
+                        sw.Restart();
                         sorted = TimSort.Sort(arr);
+                        sw.Stop();
+
+                        TimeSpan timeSpan = sw.Elapsed;
 
                         Console.WriteLine("Отсортированный массив: ");
                         printArr(sorted);
+                        Console.WriteLine($"Время на сортировку: {timeSpan.ToString()}");
                         break;
                     }
                 case ConsoleKey.D5:
