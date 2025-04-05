@@ -15,9 +15,12 @@ namespace assignment_2
             int n = Convert.ToInt32(Console.ReadLine());
             int[] arr = new int[n];
 
-            for(int i=0; i<n; i++) arr[i] = Convert.ToInt32(Console.ReadLine());
+            for(int i=0; i<n; i++)  arr[i] = Convert.ToInt32(Console.ReadLine());
 
-            arr = OddEvenSort(arr);
+
+            // arr = OddEvenSort(arr);
+            arr = TimSort.Sort(arr);
+
 
             printArr(arr);
         }

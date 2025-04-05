@@ -8,26 +8,66 @@ namespace assignment_2
 {
     internal class TimSort
     {
-        private static int[] InsertionSort(int[] v)
+        // Реализация сортировки вставками.
+        private static void InsertionSort(int[] array, int left, int right)
         {
-            for (int i = 1; i < v.Length; i++)
+            for (int i = left + 1; i <= right; i++)
             {
-                for(int j=i-1; j>=0; j--)
+                int key = array[i];
+                int j = i - 1;
+
+                while (j >= left && array[j] > key)
                 {
-                    if (v[j] > v[j + 1])
-                    {
-                        int tmp = v[j];
-                        v[j] = v[j + 1];
-                        v[j + 1] = tmp;
-                        // Program.printArr(v);
-                    }
-                    else break;
+                    array[j + 1] = array[j];
+                    j--;
                 }
+                array[j + 1] = key;
             }
-            return v;
         }
 
-        static int[] Sort(int[] nums)
+        // Слияние двух массивов в один
+        private static void Merge(int[] array, int l, int m, int r)
+        {
+            int len1 = m - l + 1, len2 = r - m;
+            int[] left = new int[len1];
+            int[] right = new int[len2];
+
+            Array.Copy(array, l, left, 0, len1);
+            Array.Copy(array, m + 1, right, 0, len2);
+
+            int i = 0, j = 0, k = l;
+
+            while (i < len1 && j < len2)
+            {
+                if (left[i] <= right[j])
+                {
+                    array[k] = left[i];
+                    i++;
+                }
+                else
+                {
+                    array[k] = right[j];
+                    j++;
+                }
+                k++;
+            }
+
+            while (i < len1)
+            {
+                array[k] = left[i];
+                k++;
+                i++;
+            }
+
+            while (j < len2)
+            {
+                array[k] = right[j];
+                k++;
+                j++;
+            }
+        }
+
+        public static int[] Sort(int[] nums)
         {
             // getting minrun
             int r = 0;
@@ -49,13 +89,27 @@ namespace assignment_2
             }
             int minrun = nmnrn + r;
 
-            // TODO step1: https://habr.com/ru/companies/infopulse/articles/133303/
-            int[,] subarrs;
-            for(int i=0; i<n; i++)
+            // Сортировка подмассивов
+            for (int i = 0; i < n; i += minrun)
             {
+                int end = Math.Min(i + minrun - 1, n - 1);
+                InsertionSort(nums, i, end);
+            } 
 
+            // Слияние каждого подмассива, пока не получится один
+            for (int size = minrun; size < n; size = 2 * size)
+            {
+                for (int left = 0; left < n; left += 2 * size)
+                {
+                    int mid = left + size - 1;
+                    int right = Math.Min(left + 2 * size - 1, n - 1);
+
+                    if (mid < right)
+                    {
+                        Merge(nums, left, mid, right);
+                    }
+                }
             }
-
             return nums;
         }
     }
