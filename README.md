@@ -1,3 +1,6 @@
+SDO link: https://sdo.kosgos.ru/course/view.php?id=5998
+
+## TaskList
 - [x] 1 лаба - №6
 - [x] 2 лаба
   - [x] чёт-нечёт
