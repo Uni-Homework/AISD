@@ -51,23 +51,6 @@ public class Deque<T> : IEnumerable<T>
         
     }
 
-    // public void InsertAfter(DoublyNode<T> node, T data)
-    // {
-    //     if (node == null) throw new ArgumentNullException();
-    //     DoublyNode<T> newNode = new DoublyNode<T>(data);
-    //     
-    //     node.Next = newNode;
-    //     newNode.Previous = node;
-    //     
-    //     if(node.Next != null)
-    //     {
-    //         var nextNode = node.Next;
-    //         newNode.Next = nextNode;
-    //         nextNode.Previous = newNode;
-    //     }
-    //
-    //     Count++;
-    // }
 
     public T RemoveFirst()
     {
