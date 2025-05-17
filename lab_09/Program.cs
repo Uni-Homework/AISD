@@ -159,7 +159,6 @@ public class MyTree<T> where T : IComparable<T>
         {
             node.Right = AddRecursive(node.Right, value);
         }
-        // If value is equal, we don't add duplicates
 
         return node;
     }
